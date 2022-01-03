@@ -1,0 +1,15 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        start = 0
+        longest = 0
+        charLastPosition = {}
+        
+        for idx, ch in enumerate(s):
+            if ch in charLastPosition and charLastPosition[ch] >= start:
+                start = charLastPosition[ch] + 1
+            else:
+                currLength = (idx - start) + 1
+                if currLength > longest:
+                    longest = currLength
+            charLastPosition[ch] = idx
+        return longest 
