@@ -1,0 +1,15 @@
+class Solution:
+    def helper(self, n, num_open, num_closed, paren_str, ans):
+        if len(paren_str) == 2*n:
+            ans.append(paren_str)
+            
+        if num_open < n:
+            self.helper(n, num_open + 1, num_closed, paren_str + "(", ans)
+            
+        if num_open > num_closed:
+            self.helper(n, num_open, num_closed + 1, paren_str + ")", ans)
+        
+    def generateParenthesis(self, n: int) -> List[str]:
+        ans = []
+        self.helper(n, 0, 0, "", ans)
+        return ans
