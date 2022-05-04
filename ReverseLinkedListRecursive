@@ -1,0 +1,18 @@
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+        original_tail = [] 
+        new_tail = self.helper(head, original_tail)
+        new_tail.next = None
+        return original_tail[0]
+        
+    
+    def helper(self, head, original_tail):
+        if not head or not head.next:
+            original_tail.append(head)
+            print("hi ", head.val)
+            return head
+        x = self.helper(head.next, original_tail)
+        x.next = head
+        return head
